@@ -3,7 +3,7 @@ using namespace std;
 
 int maxSubarray(int *a, int n)
 {
-    int prefixSum[100]; // use constand in msvc compiler in gcc can use variable n also
+    int prefixSum[1000];
     prefixSum[0] = a[0];
     for (int i = 1; i < n; i++) // Prefix Sum
     {
