@@ -30,19 +30,31 @@ int rotated_search(vector<int> &a, int key)
 
 int BinarySearch(vector<int> &a, int s, int e, int k) // different loop condition for same BS
 {
+    // int mid;
+    // while (s < e - 1)
+    // {
+    //     mid = (s + e) / 2;
+    //     if (a[mid] <= k)
+    //         s = mid;
+    //     else
+    //         e = mid;
+    // }
+    // if (a[s] == k)
+    //     return s;
+    // if (a[e] == k)
+    //     return e;
+    // return -1;
     int mid;
-    while (s < e - 1)
+    while (s <= e)
     {
         mid = (s + e) / 2;
-        if (a[mid] <= k)
-            s = mid;
+        if (a[mid] == k)
+            return mid;
+        if (a[mid] < k)
+            s = mid + 1;
         else
-            e = mid;
+            e = mid - 1;
     }
-    if (a[s] == k)
-        return s;
-    if (a[e] == k)
-        return e;
     return -1;
 }
 
@@ -60,6 +72,16 @@ int rotatedSearch(vector<int> &a, int k)
     }
     if (a[s] < a[e])
         s++;
+    // while (s <= e)
+    // {
+    //     mid = (s + e) / 2;
+
+    //     if (a[s] <= a[mid])
+    //         s = mid;
+    //     else
+    //         e = mid;
+    // }
+
     if (k >= a[0])
         return BinarySearch(a, 0, s, k);
     else
@@ -68,10 +90,13 @@ int rotatedSearch(vector<int> &a, int k)
 int main()
 {
 
-    vector<int> a{9, 5, 6, 7, 0, 1, 2, 3};
+    vector<int> a{4, 5, 6, 7, 0, 1, 2, 3};
     int key;
+    auto start_time = clock();
     cin >> key;
     cout << rotated_search(a, key) << endl;
     cout << rotatedSearch(a, key) << endl;
+    auto end_time = clock();
+    cout << "Time Taken: " << (end_time - start_time) / 1000;
     return 0;
 }
