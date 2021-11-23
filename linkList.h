@@ -78,8 +78,8 @@ class List {
 
     while (temp && temp->getData() == data) {
       Node *temp = front;
-      front = front->next;
-
+      front = front->next;  // see we are direclty updating front not temp
+                            // because that is just copy of front
       temp->next = NULL;
       delete temp;
       return;
