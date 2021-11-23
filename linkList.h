@@ -17,7 +17,7 @@ class Node {
     if (next != NULL) {
       delete next;
     }
-    cout << "deleting Node with data: \n" << data;
+    cout << "deleting Node with data: " << data << endl;
   }
 };
 
@@ -71,6 +71,29 @@ class List {
     temp->setNext(x);
   }
   void reverse() { reverseHelper(front); }
+
+  void remove(int data) {  // learn how to do it recursively
+    Node *temp = front;
+    Node *prev = NULL;
+
+    while (temp && temp->getData() == data) {
+      Node *temp = front;
+      front = front->next;
+
+      temp->next = NULL;
+      delete temp;
+      return;
+    }
+    while (temp && temp->getData() != data) {
+      prev = temp;
+      temp = temp->next;
+    }
+    if (temp == NULL) return;
+
+    prev->next = temp->next;
+    temp->next = NULL;  // to delete just this node
+    delete temp;
+  }
 
   ~List() {
     if (front != NULL) {

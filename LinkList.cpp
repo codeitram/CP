@@ -9,8 +9,9 @@ int main() {
   l1.push_back(3);
   l1.push_back(4);
   l1.push_back(5);
+  l1.remove(2);
   // l1.insert(10, 3);
-  l1.reverse();
+  // l1.reverse();
 
   auto itr = l1.getFront();
   while (itr != NULL) {
